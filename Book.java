@@ -15,17 +15,44 @@ public class Book
     private String name;
     private String author;
     private int quantity;
-    // private String image;
+    private String image;
+    static final String DEFAULT_IMAGE = "book.jpg"; // set a default image
 
     /**
      * Constructor for objects of class Book
      */
-    public Book(int key, String nm, String auth, int qty)
+    public Book(int key, String nm, String auth, int qty, String img)
     {
         this.id = key;
         this.name = nm;
         this.author = auth;
         this.quantity = qty;
+        if (img == null) {
+            this.image = DEFAULT_IMAGE; // add default img if user clicks cancel
+        } else {
+            this.image = img;
+        }
+    }
+    
+    /**
+     * Display image on GUI
+     */
+    public void displayBook() {
+        int locX = 100; // image x start position
+        int locY = 100; // image y start position
+        
+        final double WIDTH = 250;
+        final double HEIGHT = 300;
+        
+        UI.drawImage(this.image, locX, locY, WIDTH, HEIGHT);
+    }
+    
+    /**
+     * Constructor for objects of class Book
+     */
+    public Book(int key, String nm, String auth, int qty)
+    {
+        this(key, nm, auth, qty, DEFAULT_IMAGE);
     }
 
     /**
