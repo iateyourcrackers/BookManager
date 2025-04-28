@@ -111,6 +111,8 @@ public class Books
             UI.println("(F)ind a book");
             UI.println("(P)rint all books");
             UI.println("(Q)uit");
+            UI.println("TO DO - (R)emove a book");
+            UI.println("TO DO - (E)dit the number of a book's likes");
             
             choice = UI.askString("Enter your choice: ");
             
@@ -149,6 +151,12 @@ public class Books
                 UI.println("BYE");
                 UI.quit();
                 break;
+            } else if (choice.equalsIgnoreCase("R")) {
+                UI.println("hehe");
+                
+            } else if (choice.equalsIgnoreCase("E")) {
+                UI.println("haha");
+                
             } else {
                 UI.println("HEY ENTER YOUR OPTION");
             }

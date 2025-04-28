@@ -26,6 +26,7 @@ public class GUI
         UI.addButton("Find a book", this::findBook);
         UI.addButton("Print all books", books::printAllBooks);
         UI.addButton("Quit", UI::quit);
+        UI.addButton("Remove book", UI::quit);
     }
     
     /**
