@@ -28,9 +28,9 @@ public class Books
         library = new HashMap<Integer, Book>(); // initialise hashmap
         
         // create books
-        Book b1 = new Book(1, "The Wicked King", "Holly Black", 12);
-        Book b2 = new Book(2, "Persuasion", "Jane Austen", 5);
-        Book b3 = new Book(3, "Harry Potter", "JK Rowling", 63);
+        Book b1 = new Book(1, "The Wicked King", "Holly Black", 12, 3);
+        Book b2 = new Book(2, "Persuasion", "Jane Austen", 5, 2);
+        Book b3 = new Book(3, "Harry Potter", "JK Rowling", 63, 1);
         
         // put some books in the library
         library.put(1, b1);
@@ -66,17 +66,17 @@ public class Books
     /**
      * add a book to the hashmap
      */
-    public void addBook(String name, String author, int qty) {
+    public void addBook(String name, String author, int qty, int lkes) {
         this.setBookId();
-        library.put(currBookId, new Book(currBookId, name, author, qty));
+        library.put(currBookId, new Book(currBookId, name, author, qty, lkes));
     }
     
     /**
      * add a book to the hashmap
      */
-    public void addBook(String name, String author, int qty, String img) {
+    public void addBook(String name, String author, int qty, int lkes, String img) {
         this.setBookId();
-        library.put(currBookId, new Book(currBookId, name, author, qty, img));
+        library.put(currBookId, new Book(currBookId, name, author, qty, lkes, img));
     }
     
     /**
@@ -85,6 +85,13 @@ public class Books
      */
     public Book getBook() {
         return this.currBook;
+    }
+    
+    /**
+     * delete a book from the hashmap based on the book's id
+     */
+    public void deleteBook(int id) {
+        this.library.remove(id);
     }
     
     /**

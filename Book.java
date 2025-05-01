@@ -1,4 +1,5 @@
 import ecs100.*;
+import java.awt.Color;
 
 /**
  * Write a description of class Book here.
@@ -17,16 +18,18 @@ public class Book
     private int quantity;
     private String image;
     static final String DEFAULT_IMAGE = "book.jpg"; // set a default image
-
+    private int likes;
+    
     /**
      * Constructor for objects of class Book
      */
-    public Book(int key, String nm, String auth, int qty, String img)
+    public Book(int key, String nm, String auth, int qty, int lkes, String img)
     {
         this.id = key;
         this.name = nm;
         this.author = auth;
         this.quantity = qty;
+        this.likes = lkes;
         if (img == null) {
             this.image = DEFAULT_IMAGE; // add default img if user clicks cancel
         } else {
@@ -38,6 +41,7 @@ public class Book
      * Display image on GUI
      */
     public void displayBook() {
+        // draw the book cover
         int locX = 100; // image x start position
         int locY = 100; // image y start position
         
@@ -45,14 +49,17 @@ public class Book
         final double HEIGHT = 300;
         
         UI.drawImage(this.image, locX, locY, WIDTH, HEIGHT);
+        
+        // draw the star rating
+        
     }
     
     /**
      * Constructor for objects of class Book
      */
-    public Book(int key, String nm, String auth, int qty)
+    public Book(int key, String nm, String auth, int qty, int lkes)
     {
-        this(key, nm, auth, qty, DEFAULT_IMAGE);
+        this(key, nm, auth, qty, lkes, DEFAULT_IMAGE);
     }
 
     /**
@@ -81,5 +88,12 @@ public class Book
      */
     public int getQuantity() {
         return this.quantity;   
+    }
+    
+    /**
+     * Getter for likes
+     */
+    public int getLikes() {
+        return this.likes;
     }
 }
