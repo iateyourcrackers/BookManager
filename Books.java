@@ -7,8 +7,7 @@ import java.util.HashMap;
  * Holds a collection of books in a hashmap
  * Allows a user to add, find, print all, edit from a menu, delete, and prevent user from adding a duplicate book
  *
- * ??? delete
- * ??? prevent user from adding a duplicate
+ * I have absolutely no clue whether or not the images are working (i can't figure out how to do it on my computer)
  * @author (HJF)
  * @version (7/4/25)
  */
@@ -52,10 +51,11 @@ public class Books
      * set the current book instance if found
      * return boolean false or true
      */
-    public boolean findBook(String name) {
+    public boolean findBook(String name, String author) {
         // search for the book
         for (int bookId: library.keySet()) {
-            if (library.get(bookId).getName().toLowerCase().equals(name.toLowerCase().trim())) {
+            if ((library.get(bookId).getName().toLowerCase().equals(name.toLowerCase().trim()))
+            && (library.get(bookId).getAuthor().toLowerCase().equals(author.toLowerCase().trim()))) {
                 this.currBook = this.library.get(bookId); // set the current book
                 return true;
             }
@@ -72,7 +72,7 @@ public class Books
     }
     
     /**
-     * add a book to the hashmap
+     * Add a book to the hashmap
      */
     public void addBook(String name, String author, int qty, int lkes, String img) {
         this.setBookId();
@@ -81,21 +81,21 @@ public class Books
     
     /**
      * Book Getter
-     * return an instance of Book class
+     * Return an instance of Book class
      */
     public Book getBook() {
         return this.currBook;
     }
     
     /**
-     * delete a book from the hashmap based on the book's id
+     * Delete a book from the hashmap based on the book's id
      */
     public void deleteBook(int id) {
         this.library.remove(id);
     }
     
     /**
-     * print all books
+     * Print all books
      */
     public void printAllBooks() {
         for (int bookId: library.keySet()) {
@@ -129,7 +129,7 @@ public class Books
                 String author = UI.askString("Enter book author: ");
                 
                 // check for existing books
-                if (findBook(title)) {
+                if (findBook(title, author)) {
                     UI.println("A book with this title already exists.");
                     break;
                 } else {
@@ -140,7 +140,8 @@ public class Books
             } else if (choice.equalsIgnoreCase("F")) {
                 // find books
                 String searchTitle = UI.askString("Enter book title: ");
-                if (findBook(searchTitle)) {
+                String searchAuthor = UI.askString("Enter book author: ");
+                if (findBook(searchTitle, searchAuthor)) {
                     // found the book, print details
                     UI.println("Book found");
                     UI.print(currBook);
@@ -158,12 +159,6 @@ public class Books
                 UI.println("BYE");
                 UI.quit();
                 break;
-            } else if (choice.equalsIgnoreCase("R")) {
-                UI.println("hehe");
-                
-            } else if (choice.equalsIgnoreCase("E")) {
-                UI.println("haha");
-                
             } else {
                 UI.println("HEY ENTER YOUR OPTION");
             }
@@ -172,7 +167,7 @@ public class Books
     }
     
     /**
-     * main
+     * Main routine
      */
     public static void main(String[] args) {
         new Books().menu();

@@ -51,7 +51,29 @@ public class Book
         UI.drawImage(this.image, locX, locY, WIDTH, HEIGHT);
         
         // draw the star rating
+        // set the star size and gap space
+        final int MAX_STARS = 5;
+        double starSize = 10;
+        double gap = 10;
+        double yStar = locY + HEIGHT + 10;
         
+        // add a for range that loops through as many likes (stars)
+        for (int i = 0; i < MAX_STARS; i++) {
+            double xStar = locX + i * (starSize + gap);
+            
+            // only colour up to the liked amount of stars
+            if (i < this.likes) {
+                UI.setColor(Color.YELLOW);
+            } else {
+                UI.setColor(Color.LIGHT_GRAY);
+            }
+            
+            // draw a triangle here bc i currently do not know how to draw a star
+            double[] xPoints = {xStar, xStar + starSize/2, xStar + starSize};
+            double[] yPoints = {yStar + starSize, yStar, yStar + starSize};
+            
+            UI.fillPolygon(xPoints, yPoints, 3);
+        }
     }
     
     /**
@@ -60,6 +82,13 @@ public class Book
     public Book(int key, String nm, String auth, int qty, int lkes)
     {
         this(key, nm, auth, qty, lkes, DEFAULT_IMAGE);
+    }
+    
+    /**
+     * Change the likes for a book
+     */
+    public void setLikes(int lkes) {
+        this.likes = lkes;
     }
 
     /**
